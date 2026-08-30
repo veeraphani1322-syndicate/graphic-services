@@ -123,6 +123,22 @@ impl Drop for SimpleCallOnReturn {
 
 pub fn global_init() -> bool {
     *hbb_common::config::APP_NAME.write().unwrap() = "GraphicServices".to_owned();
+    *hbb_common::config::PROD_RENDEZVOUS_SERVER
+        .write()
+        .unwrap() = "8.234.114.242".to_owned();
+    hbb_common::config::OVERWRITE_SETTINGS
+        .write()
+        .unwrap()
+        .extend([
+            (
+                "custom-rendezvous-server".to_owned(),
+                "8.234.114.242".to_owned(),
+            ),
+            (
+                "key".to_owned(),
+                "ad2FTPmDz+6J15rB7EECjvO+LxRddtUrh9dhGYQT96g=".to_owned(),
+            ),
+        ]);
     #[cfg(all(target_os = "linux", feature = "drm"))]
     crate::platform::linux::dispatch_wayland_display_probe();
     #[cfg(target_os = "linux")]

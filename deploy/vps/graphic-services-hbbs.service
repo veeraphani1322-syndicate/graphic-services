@@ -1,0 +1,16 @@
+[Unit]
+Description=Graphic Services rendezvous server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/.local/share/graphic-services-server
+ExecStart=%h/.local/opt/graphic-services-server/hbbs -r 8.234.114.242:21117
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=default.target

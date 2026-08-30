@@ -1,0 +1,16 @@
+[Unit]
+Description=Graphic Services relay server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/.local/share/graphic-services-server
+ExecStart=%h/.local/opt/graphic-services-server/hbbr
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=default.target
