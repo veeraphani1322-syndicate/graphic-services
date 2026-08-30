@@ -90,11 +90,11 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "Graphic Services" "\0"
-            VALUE "FileDescription", "Graphic Services Remote Desktop" "\0"
+            VALUE "FileDescription", "Graphic Services" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "rustdesk" "\0"
+            VALUE "InternalName", "GraphicServices" "\0"
             VALUE "LegalCopyright", "Copyright © 2026 Graphic Services contributors." "\0"
-            VALUE "OriginalFilename", "rustdesk.exe" "\0"
+            VALUE "OriginalFilename", "GraphicServices.exe" "\0"
             VALUE "ProductName", "Graphic Services" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END

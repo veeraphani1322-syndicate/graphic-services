@@ -2,7 +2,7 @@
 name = "rustdesk-portable-packer"
 version = "1.4.9"
 edition = "2021"
-description = "Graphic Services Remote Desktop"
+description = "Graphic Services"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -29,10 +29,9 @@ native-windows-gui = {version = "1.0", default-features = false, features = ["an
 LegalCopyright = "Copyright © 2026 Graphic Services contributors."
 ProductName = "Graphic Services"
 OriginalFilename = "GraphicServices.exe"
-FileDescription = "Graphic Services Remote Desktop"
+FileDescription = "Graphic Services"
 #ProductVersion = ""
 
 [target.'cfg(target_os="windows")'.build-dependencies]
 winres = "0.1"
 winapi = { version = "0.3", features = [ "winnt", "pdh", "synchapi" ] }
-

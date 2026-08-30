@@ -483,7 +483,10 @@ class _GeneralState extends State<_General> {
     final incomingOnly = bind.isIncomingOnly();
     final outgoingOnly = bind.isOutgoingOnly();
     final showAutoUpdate = (isWindows && bind.mainIsInstalled()) ||
-    (isMacOS && bind.mainIsInstalled() && bind.mainIsInstalledDaemon(prompt: false) && !bind.isCustomClient());
+        (isMacOS &&
+            bind.mainIsInstalled() &&
+            bind.mainIsInstalledDaemon(prompt: false) &&
+            !bind.isCustomClient());
     final children = <Widget>[
       if (!isWeb && !incomingOnly)
         _OptionCheckBox(context, 'Confirm before closing multiple tabs',
@@ -2424,11 +2427,10 @@ class _AboutState extends State<_About> {
       final buildDate = data['buildDate'].toString();
       final fingerprint = data['fingerprint'].toString();
       final myId = data['myId'].toString();
-      const linkStyle = TextStyle(decoration: TextDecoration.underline);
       final scrollController = ScrollController();
       return SingleChildScrollView(
         controller: scrollController,
-        child: _Card(title: translate('About RustDesk'), children: [
+        child: _Card(title: 'About Graphic Services', children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -2448,22 +2450,6 @@ class _AboutState extends State<_About> {
               SelectionArea(
                   child: Text('${translate('ID')}: $myId')
                       .marginSymmetric(vertical: 4.0)),
-              InkWell(
-                  onTap: () {
-                    launchUrlString('https://rustdesk.com/privacy.html');
-                  },
-                  child: Text(
-                    translate('Privacy Statement'),
-                    style: linkStyle,
-                  ).marginSymmetric(vertical: 4.0)),
-              InkWell(
-                  onTap: () {
-                    launchUrlString('https://rustdesk.com');
-                  },
-                  child: Text(
-                    translate('Website'),
-                    style: linkStyle,
-                  ).marginSymmetric(vertical: 4.0)),
               Container(
                 decoration: const BoxDecoration(color: Color(0xFF2c8cff)),
                 padding:
