@@ -122,7 +122,7 @@ impl Drop for SimpleCallOnReturn {
 }
 
 pub fn global_init() -> bool {
-    *hbb_common::config::APP_NAME.write().unwrap() = "Graphic Services".to_owned();
+    *hbb_common::config::APP_NAME.write().unwrap() = "GraphicServices".to_owned();
     #[cfg(all(target_os = "linux", feature = "drm"))]
     crate::platform::linux::dispatch_wayland_display_probe();
     #[cfg(target_os = "linux")]
@@ -1005,6 +1005,10 @@ pub async fn do_check_software_update() -> hbb_common::ResultType<()> {
 #[inline]
 pub fn get_app_name() -> String {
     hbb_common::config::APP_NAME.read().unwrap().clone()
+}
+
+pub fn get_product_display_name() -> &'static str {
+    "Graphic Services"
 }
 
 #[inline]

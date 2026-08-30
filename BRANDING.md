@@ -16,6 +16,10 @@ labels, Linux desktop entries, and the shared runtime application name. The
 runtime override lives in the root application so upstream submodules remain
 publishable without a separate branded submodule fork.
 
+Windows uses `GraphicServices` internally because service and installer names
+must match `[a-zA-Z0-9-]+`; the UI and executable metadata display
+`Graphic Services`.
+
 The original Graphic Services mark uses two connected paths to represent a
 secure two-way remote session. Its violet-to-cyan palette is defined in
 `res/logo.svg`; `res/logo-header.svg` is the repository header treatment.
