@@ -1,0 +1,10 @@
+name: Graphic Services Actions Check
+
+on:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "GitHub Actions is available for Graphic Services"
