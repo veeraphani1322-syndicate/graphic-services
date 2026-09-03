@@ -11,6 +11,6 @@ on:
 
 jobs:
   run-flutter-tag-build:
-    uses: ./.github/workflows/flutter-build.yml
+    uses: ./.github/workflows/graphic-services-windows.yml
     with:
       upload-artifact: true
