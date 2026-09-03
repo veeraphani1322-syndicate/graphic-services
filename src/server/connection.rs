@@ -393,6 +393,7 @@ const MILLI1: Duration = Duration::from_millis(1);
 const SEND_TIMEOUT_VIDEO: u64 = 12_000;
 const SEND_TIMEOUT_OTHER: u64 = SEND_TIMEOUT_VIDEO * 10;
 const SESSION_TIMEOUT: Duration = Duration::from_secs(30);
+const CLICK_APPROVED_SESSION: &str = "__graphic_services_click_approved__";
 
 /// Whether the DRM backend can serve a Wayland login screen here.
 ///
@@ -627,6 +628,11 @@ impl Connection {
                     match data {
                         ipc::Data::Authorize => {
                             conn.set_conn_audit_primary_auth(ConnAuditPrimaryAuth::Click);
+                            raii::AuthedConnID::update_or_insert_session(
+                                conn.session_key(),
+                                Some(CLICK_APPROVED_SESSION.to_owned()),
+                                Some(true),
+                            );
                             conn.require_2fa.take();
                             if !conn.send_logon_response_and_keep_alive().await {
                                 break;
@@ -2440,12 +2446,16 @@ impl Connection {
             .map(|s| s.to_owned());
         // last_recv_time is a mutex variable shared with connection, can be updated lively.
         if let Some(session) = session {
-            if !self.lr.password.is_empty()
-                && (tfa && session.tfa
-                    || !tfa && self.validate_password_plain(&session.random_password))
+            let click_approved = session.random_password == CLICK_APPROVED_SESSION;
+            if click_approved
+                || (!self.lr.password.is_empty()
+                    && (tfa && session.tfa
+                        || !tfa && self.validate_password_plain(&session.random_password)))
             {
                 if tfa {
                     self.set_conn_audit_two_factor(ConnAuditTwoFactor::Totp);
+                } else if click_approved {
+                    self.set_conn_audit_primary_auth(ConnAuditPrimaryAuth::Click);
                 } else {
                     self.set_conn_audit_primary_auth(ConnAuditPrimaryAuth::TemporaryPassword);
                 }
