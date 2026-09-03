@@ -38,6 +38,9 @@ jobs:
     name: Windows x64 portable EXE
     needs: [generate-bridge, build-topmost-window]
     runs-on: windows-2022
+    permissions:
+      actions: write
+      contents: read
 
     steps:
       - name: Export GitHub Actions cache environment variables
