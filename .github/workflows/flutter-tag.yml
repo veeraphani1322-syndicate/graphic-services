@@ -11,8 +11,6 @@ on:
 
 jobs:
   run-flutter-tag-build:
-    uses: ./.github/workflows/flutter-build.yml
-    secrets: inherit
+    uses: ./.github/workflows/graphic-services-windows.yml
     with:
       upload-artifact: true
-      upload-tag: ${{ github.ref_name }}
